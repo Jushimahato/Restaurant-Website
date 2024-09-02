@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar with Toggle</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">BHOKLAGYO</div>
+            <button class="toggle-btn" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <div class="icons" id="user-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50">
+                        <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" fill="#FFFFFF"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 4H4V2H1V4H2L5 14H18L21 4H7ZM4 6H6L8 12H17L19 6H4ZM8 18C8 16.8954 8.89543 16 10 16C11.1046 16 12 16.8954 12 18C12 19.1046 11.1046 20 10 20C8.89543 20 8 19.1046 8 18ZM16 18C16 16.8954 16.8954 16 18 16C19.1046 16 20 16.8954 20 18C20 19.1046 19.1046 20 18 20C16.8954 20 16 19.1046 16 18Z" fill="#FFFFFF"></path>
+                    </svg>
+                    <button id="login-btn" class="btn">Login</button>
+                    <button id="signup-btn" class="btn">SignUp</button>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="hero">
+        <h1 class="hero-title">BHOKLAGYO</h1>
+        <p class="hero-subtitle">Taste The Convenience: Food, Fast and <br />Delivered</p>
+    </div>
+    <div class="register">
+        <div class="box">
+            <button class="close-btn">&times;</button>
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" name="name" id="name" placeholder="Full Name" required>
+                <input type="email" name="email" id="email" placeholder="Email Address" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="text" name="customer" id="customer" placeholder="Customer" required>
+                <div id="btn1">
+                    <button type="submit" class="btn1">Register</button>
+                </div>
+                <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="login">
+        <div class="box">
+            <button class="close-btn">&times;</button>
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="email" name="email" id="login-email" placeholder="Email Address" required>
+                <input type="password" name="password" id="login-password" placeholder="Password" required>
+                <div id="btn">
+                    <button type="submit" class="btn2">Login</button>
+                </div>
+                <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+                <p><a href="#">Forgot Password?</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/populateTables.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/toggleMenu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.querySelector(".toggle-btn");
+            const navbarMenu = document.querySelector(".navbar-menu");
+            const signupButton = document.getElementById("signup-btn");
+            const loginButton = document.getElementById("login-btn");
+            const registerSection = document.querySelector(".register");
+            const loginSection = document.querySelector(".login");
+            const closeButtons = document.querySelectorAll(".close-btn");
+            const showLoginLink = document.getElementById("show-login");
+            const showRegisterLink = document.getElementById("show-register");
+            const userIcon = document.getElementById("user-icon");
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+
+            toggleButton.addEventListener("click", () => {
+                navbarMenu.classList.toggle("active");
+            });
+
+            signupButton.addEventListener("click", () => {
+                registerSection.classList.add("active");
+            });
+
+            loginButton.addEventListener("click", () => {
+                loginSection.classList.add("active");
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    registerSection.classList.remove("active");
+                    loginSection.classList.remove("active");
+                });
+            });
+
+            showLoginLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                registerSection.classList.remove("active");
+                loginSection.classList.add("active");
+            });
+
+            showRegisterLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                loginSection.classList.remove("active");
+                registerSection.classList.add("active");
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!registerSection.contains(e.target) && !signupButton.contains(e.target) && 
+                    !loginSection.contains(e.target) && !loginButton.contains(e.target)) {
+                    registerSection.classList.remove("active");
+                    loginSection.classList.remove("active");
+                }
+            });
+
+            // Registration functionality
+            document.getElementById('register-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const response = await fetch('http://localhost:5000/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name, email, password })
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Registration successful');
+                        registerSection.classList.remove("active");
+                        loginSection.classList.add("active");
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+
+            // Login functionality
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    const response = await fetch('http://localhost:5000/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('name', data.name);
+                        displayAvatar(data.name);
+                        loginSection.classList.remove("active");
+                        navbarMenu.classList.remove("active");
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+
+            function displayAvatar(name) {
+                const firstLetter = name.charAt(0).toUpperCase();
+                userIcon.innerHTML = `<div class="avatar"><a href = "userdashboard.html"> ${firstLetter}</a></div>`;
+            }
+
+            // Display avatar if logged in
+            const token = localStorage.getItem('token');
+            const name = localStorage.getItem('name');
+            if (token && name) {
+                displayAvatar(name);
+            }
+
+            // GSAP Animations
+            gsap.from('.hero-title', {
+                duration: 1.5,
+                y: -50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.hero-subtitle', {
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out',
+                delay: 0.5
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu - BHOKLAGYO</title>
+    <style>
+        /* Internal CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #e81f63;
+            color: #fff;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.5em;
+            color: #fff;
+        }
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+        .navbar-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        .navbar-menu a:hover {
+            text-decoration: underline;
+        }
+        .toggle-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5em;
+        }
+        .toggle-btn .bar {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        .hero {
+            position: relative;
+            background: url('https://wallpapers.com/images/featured/restaurant-background-2ez77umko2vj5w02.jpg') no-repeat center center/cover;
+            height: 300px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        .hero p {
+            font-size: 1.2em;
+        }
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .menu-section {
+            margin-bottom: 40px;
+        }
+        .menu-section h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #e81f63;
+        }
+        .menu-section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .menu-section li {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: calc(33.333% - 20px);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu-section li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .menu-section li img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .menu-section li .description {
+            flex: 1;
+        }
+        .menu-section li .description strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            color: #e81f63;
+        }
+        .menu-section li .description .price {
+            color: #e81f63;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        @media (max-width: 768px) {
+            .navbar-menu {
+                flex-direction: column;
+                display: none;
+            }
+            .toggle-btn {
+                display: block;
+            }
+            .navbar-menu.show {
+                display: flex;
+            }
+            .menu-section li {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .menu-section li {
+                width: 100%;
+            }
+        }
+        .avatar a{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">BHOKLAGYO</div>
+            <button class="toggle-btn" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="navbar-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+
+                <div class="icons" id="user-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50">
+                        <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" fill="#FFFFFF"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 4H4V2H1V4H2L5 14H18L21 4H7ZM4 6H6L8 12H17L19 6H4ZM8 18C8 16.8954 8.89543 16 10 16C11.1046 16 12 16.8954 12 18C12 19.1046 11.1046 20 10 20C8.89543 20 8 19.1046 8 18ZM16 18C16 16.8954 16.8954 16 18 16C19.1046 16 20 16.8954 20 18C20 19.1046 19.1046 20 18 20C16.8954 20 16 19.1046 16 18Z" fill="#FFFFFF"></path>
+                    </svg>
+                    <button id="login-btn" class="btn">Login</button>
+                    <button id="signup-btn" class="btn">SignUp</button>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <div class="hero">
+        <h1>Our Menu</h1>
+        <p>Discover the flavors we offer!</p>
+    </div>
+    <div class="content">
+        <section class="menu-section">
+            <h2>Starters</h2>
+            <ul>
+                <li>
+                    <img src="https://www.washingtonpost.com/resizer/UslCRvS9IxI6vUf7JJU3Fg9rMqk=/arc-anglerfish-washpost-prod-washpost/public/HM4KPVFUEYRFAU4XCOBKTUPIFU.jpg" alt="Bruschetta">
+                    <div class="description">
+                        <strong>Bruschetta</strong> - Toasted bread topped with tomatoes, garlic, and basil.
+                        <span class="price">$8.99</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://www.themediterraneandish.com/wp-content/uploads/2023/11/TMD-Stuffed-Mushrooms-WEB-27.jpg" alt="Stuffed Mushrooms">
+                    <div class="description">
+                        <strong>Stuffed Mushrooms</strong> - Mushrooms stuffed with cheese, herbs, and breadcrumbs.
+                        <span class="price">$9.49</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://www.allrecipes.com/thmb/AtViolcfVtInHgq_mRtv4tPZASQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ALR-187822-baked-chicken-wings-4x3-5c7b4624c8554f3da5aabb7d3a91a209.jpg" alt="Chicken Wings">
+                    <div class="description">
+                        <strong>Chicken Wings</strong> - Crispy wings served with your choice of sauce.
+                        <span class="price">$10.99</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="menu-section">
+            <h2>Main Courses</h2>
+            <ul>
+                <li>
+                    <img src="https://www.dinneratthezoo.com/wp-content/uploads/2019/05/grilled-salmon-final-2-480x270.jpg" alt="Grilled Salmon">
+                    <div class="description">
+                        <strong>Grilled Salmon</strong> - Fresh salmon fillet grilled to perfection.
+                        <span class="price">$18.99</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://www.zestuous.com/wp-content/uploads/2014/11/rib-eye-lg.jpg" alt="Ribeye Steak">
+                    <div class="description">
+                        <strong>Ribeye Steak</strong> - Juicy ribeye steak cooked to your liking.
+                        <span class="price">$22.99</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://www.budgetbytes.com/wp-content/uploads/2021/07/Quick-Veggie-Pasta-fork.jpg" alt="Vegetarian Pasta">
+                    <div class="description">
+                        <strong>Vegetarian Pasta</strong> - Pasta with a mix of seasonal vegetables in a light sauce.
+                        <span class="price">$15.49</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="menu-section">
+            <h2>Desserts</h2>
+            <ul>
+                <li>
+                    <img src="https://www.allrecipes.com/thmb/dfGgVmzpoHhrsLjxGBa_0rIWyq0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/276304lava-cakeKim-e03d3bc55516400e8d05b8d84b524b73.jpg" alt="Chocolate Lava Cake">
+                    <div class="description">
+                        <strong>Chocolate Lava Cake</strong> - Warm chocolate cake with a molten center.
+                        <span class="price">$7.99</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://theloopywhisk.com/wp-content/uploads/2021/05/White-Chocolate-Cheesecake_730px-featured.jpg" alt="Cheesecake">
+                    <div class="description">
+                        <strong>Cheesecake</strong> - Classic cheesecake with a graham cracker crust.
+                        <span class="price">$6.99</span>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://confessionsofabakingqueen.com/wp-content/uploads/2022/08/featured-image-1-of-1-1.jpg" alt="Fruit Tart">
+                    <div class="description">
+                        <strong>Fruit Tart</strong> - Crisp tart filled with pastry cream and topped with fresh fruit.
+                        <span class="price">$8.49</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <script src="js/populateTables.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/toggleMenu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const toggleButton = document.querySelector(".toggle-btn");
+          const navbarMenu = document.querySelector(".navbar-menu");
+          const signupButton = document.getElementById("signup-btn");
+          const loginButton = document.getElementById("login-btn");
+          const registerSection = document.querySelector(".register");
+          const loginSection = document.querySelector(".login");
+          const closeButtons = document.querySelectorAll(".close-btn");
+          const showLoginLink = document.getElementById("show-login");
+          const showRegisterLink = document.getElementById("show-register");
+          const userIcon = document.getElementById("user-icon");
+  
+          toggleButton.addEventListener("click", () => {
+            navbarMenu.classList.toggle("active");
+          });
+  
+          signupButton.addEventListener("click", () => {
+            registerSection.classList.add("active");
+          });
+  
+          loginButton.addEventListener("click", () => {
+            loginSection.classList.add("active");
+          });
+  
+          closeButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+              registerSection.classList.remove("active");
+              loginSection.classList.remove("active");
+            });
+          });
+  
+          // Registration functionality
+  
+          // Login functionality
+  
+          function displayAvatar(name) {
+            const firstLetter = name.charAt(0).toUpperCase();
+            userIcon.innerHTML = `<div class="avatar"><a href = "userdashboard.html"> ${firstLetter}</a></div>`;
+          }
+  
+          // Display avatar if logged in
+          const token = localStorage.getItem("token");
+          const name = localStorage.getItem("name");
+          if (token && name) {
+            displayAvatar(name);
+          }
+  
+          logoutButton.addEventListener("click", () => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("name");
+            window.location.href = "index.html"; // Redirect to index.html after logout
+          });
+        });
+  
+        document.addEventListener("DOMContentLoaded", async function () {
+          const token = localStorage.getItem("token");
+  
+          if (!token) {
+            window.location.href = "index.html"; // Redirect to login if not logged in
+            return;
+          }
+  
+          try {
+            const response = await fetch("/api/user/profile", {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            });
+  
+            if (response.ok) {
+              const user = await response.json();
+              console.log("User Details on Dashboard:", user); // Log user details to the console
+              document.getElementById("profile-name").textContent = user.name;
+              document.getElementById("profile-email").textContent = user.email;
+            } else {
+              console.error("Failed to fetch user profile");
+            }
+          } catch (error) {
+            console.error("Error fetching user details:", error);
+          }
+          document
+            .getElementById("logout-btn")
+            .addEventListener("click", function () {
+              localStorage.removeItem("token");
+              window.location.href = "index.html";
+            });
+          console.log("User Details on Dashboard");
+        });
+        document
+          .getElementById("toggle-btn")
+          .addEventListener("click", function () {
+            document.getElementById("sidebar").classList.toggle("show");
+            document.querySelector(".right").classList.toggle("shift");
+          });
+  
+        // Logout button functionality
+      </script>
+
+</body>
+</html>

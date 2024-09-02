@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+      }
+      .container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        color: #fff;
+      }
+      .left {
+        width: 250px;
+        border-right: 4px solid #e81f63;
+        padding: 15px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        background-color: #111;
+        position: fixed;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+        z-index: 1000; /* Ensure sidebar is on top */
+      }
+      .left p {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+      }
+      .left p i {
+        margin-right: 10px;
+        color: #e81f63;
+      }
+      .left hr {
+        border: 0;
+        border-top: 1px solid grey;
+      }
+      .right {
+        margin-left: 250px; /* Adjust to match sidebar width */
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        transition: margin-left 0.3s ease;
+      }
+      .inner1,
+      .inner2 {
+        width: 100%;
+        height: auto;
+        background-color: #292929;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .inner1 h2,
+      .inner2 h2 {
+        margin-bottom: 20px;
+        font-size: 22px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #444;
+      }
+      th {
+        background-color: transparent;
+      }
+      td img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+      }
+      .edit-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 16px;
+        color: #e81f63;
+        cursor: pointer;
+      }
+      .toggle-btn {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        color: #e81f63;
+        cursor: pointer;
+        z-index: 1000;
+      }
+      @media (max-width: 768px) {
+        .left {
+          transform: translateX(-100%);
+        }
+        .left.show {
+          transform: translateX(0);
+        }
+        .right {
+          margin-left: 0;
+          padding: 10px;
+        }
+        .toggle-btn {
+          display: block;
+        }
+      }
+      .list1 {
+        height: 60px;
+        display: flex;
+        align-items: center;
+      }
+      .right{
+        padding-top: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <i class="fas fa-bars toggle-btn" id="toggle-btn"></i>
+    <div class="container">
+      <div class="left" id="sidebar">
+        <div class="list1">
+          <p><i class="fas fa-tachometer-alt"></i> Dashboard</p>
+        </div>
+        <hr />
+        <div class="list1">
+          <p><i class="fas fa-box"></i> Orders</p>
+        </div>
+        <hr />
+        <div class="list1">
+          <p><i class="fas fa-utensils"></i> Menu</p>
+        </div>
+        <hr />
+        <div class="list1">
+          <p><i class="fas fa-th-large"></i> Food Category</p>
+        </div>
+        <hr />
+        <div class="list1">
+          <p><i class="fas fa-carrot"></i> Ingredients</p>
+        </div>
+        <hr />
+        <div class="list1">
+          <p><i class="fas fa-calendar-alt"></i> Events</p>
+        </div>
+        <hr />
+        <div class="list1">
+          <p><i class="fas fa-info-circle"></i> Details</p>
+        </div>
+        <hr />
+        <div class="list1" >
+          <p><a href="index.html" style="text-decoration: none; color: #fff;"><i class="fas fa-sign-out-alt"></i> Logout</a></p>
+        </div>
+      </div>
+      <div class="right">
+        <!-- Recent Order Section -->
+        <div class="inner1">
+          <h2>Recent Order</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Customer</th>
+                <th>Price</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>
+                  <img src="https://via.placeholder.com/50" alt="Product" />
+                </td>
+                <td>John Doe</td>
+                <td>$15</td>
+                <td>Burger</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>
+                  <img src="https://via.placeholder.com/50" alt="Product" />
+                </td>
+                <td>Jane Smith</td>
+                <td>$20</td>
+                <td>Pizza</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>
+                  <img src="https://via.placeholder.com/50" alt="Product" />
+                </td>
+                <td>Bob Johnson</td>
+                <td>$12</td>
+                <td>Salad</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Recently Added Menu Section -->
+        <div class="inner2">
+          <h2>Recently Added Menu</h2>
+          <i class="fas fa-edit edit-icon"></i>
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Availability</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img src="https://via.placeholder.com/50" alt="Menu Item" />
+                </td>
+                <td>Pasta</td>
+                <td>$10</td>
+                <td>Available</td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="https://via.placeholder.com/50" alt="Menu Item" />
+                </td>
+                <td>Steak</td>
+                <td>$25</td>
+                <td>Out of Stock</td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="https://via.placeholder.com/50" alt="Menu Item" />
+                </td>
+                <td>Sushi</td>
+                <td>$30</td>
+                <td>Available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("toggle-btn")
+        .addEventListener("click", function () {
+          document.getElementById("sidebar").classList.toggle("show");
+          document.querySelector(".right").classList.toggle("shift");
+        });
+    </script>
+  </body>
+</html>
